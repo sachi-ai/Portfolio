@@ -99,7 +99,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </a>
       </div>
       <div class="card-body register-card-body">
-       
+        <?php 
+        if (!empty($msg)) {
+          echo $msg;
+        }
+        if ($userExist) {
+          echo '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Error!</strong> Username already exists. Please choose a different username.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>';
+        }
+        if ($success) {
+          echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Success!</strong> Registration successful. You can now log in.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>';
+        }
+        ?>   
           
         <form action="" id="register-frm" method="post">
           <div class="input-group mb-1">
