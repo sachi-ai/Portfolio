@@ -102,4 +102,28 @@ function validate_image($file) {
     }
 }
 
+function upload_file($field_name, $upload_dir = 'uploads/') {
+    $upload_dir_file = base_app . $upload_dir; // Absolute path to the upload directory
+     //create the upload directory if it doesn't exist
+     if(!is_dir($upload_dir_file)){
+        mkdir(($upload_dir_file), 0755, true);
+     }
+     //check if file was uploaded without errors
+     if(!isset($_FILES[$field_name]) || $_FILES[$field_name]['error'] !== UPLOAD_ERR_OK) {
+        return false; // Return false if no file was uploaded or if there was an error
+        // return json_encode(['status' => 'error', 'message' => 'No file uploaded.']); // Return empty string if no file was uploaded or if there was an error
+     }
+     // create a unique filename to prevent overwriting
+     $filename = uniqid() . '_' . basename($_FILES[$field_name]['name']);
+     $target_path = $upload_dir_file . $filename; // Full path to the target file
+     error_log("Target path: $target_path"); // Debugging output
+     $relative_path = $upload_dir . $filename; // Path to store in the database
+     if(move_uploaded_file($_FILES[$field_name]['tmp_name'], $target_path)) {
+        return $relative_path; // Return the relative path to the uploaded file
+     } else {
+        return false; // Return false if the file upload failed
+        // return json_encode(['status' => 'error', 'message' => 'Failed to upload file.']); // Return error if file upload failed
+     }
+}
+
 ?>
