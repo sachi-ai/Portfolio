@@ -1,3 +1,4 @@
+<?php require_once '../config.php'; ?>
 <!doctype html>
 <html lang="en">
 <?php require_once 'includes/header.php' ?>
