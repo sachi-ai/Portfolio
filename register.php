@@ -125,7 +125,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
             <div class="input-group-text"><span class="bi bi-person"></span></div>
           </div>
-         
+          <!-- Firstname Error -->
+            <?php
+            if (isset($FirstnameError) && $FirstnameError): ?>
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Error!</strong> Please fill in the firstname field.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            <?php endif; ?>
           <div class="input-group mb-1">
             <div class="form-floating">
               <input id="registerLastName" type="text" class="form-control" placeholder="" name="lastname" value="<?php echo isset($lastname) ? htmlspecialchars($lastname) : ''; ?>">
@@ -133,7 +140,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
             <div class="input-group-text"><span class="bi bi-person-vcard"></span></div>
           </div>
-         
+         <!-- Lastname Error -->
+            <?php
+            if (isset($LastnameError) && $LastnameError): ?>
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Error!</strong> Please fill in the lastname field.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            <?php endif; ?>
           <div class="input-group mb-1">
             <div class="form-floating">
               <input id="registerUsername" type="text" class="form-control" placeholder="" name="username" value="<?php echo isset($username) ? htmlspecialchars($username) : ''; ?>">
@@ -141,7 +155,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
             <div class="input-group-text"><span class="bi bi-at"></span></div>
           </div>
-         
+         <!-- Username Error -->
+            <?php
+            if (isset($UsernameError) && $UsernameError): ?>
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Error!</strong> Please fill in the username field.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            <?php elseif (isset($UsernameInvalid) && $UsernameInvalid): ?>
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Error!</strong> Username must be at least 3 characters long and can only contain letters, numbers, and underscores.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            <?php endif; ?>
           <div class="input-group mb-1">
             <div class="form-floating">
               <input id="registerPassword" type="password" class="form-control" placeholder="" name="password">
@@ -149,7 +175,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
             <div class="input-group-text"><span class="bi bi-lock-fill"></span></div>
           </div>
-          
+          <!-- Password Error -->
+            <?php
+            if (isset($PasswordError) && $PasswordError): ?>
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Error!</strong> Please fill in the password field.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            <?php elseif (isset($PasswordInvalid) && $PasswordInvalid): ?>
+              <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Error!</strong> Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one number, and one special character.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            <?php endif; ?>
           <!--begin::Row-->
           <div class="row">
             <div class="col-8 d-inline-flex align-items-center">
