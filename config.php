@@ -88,4 +88,18 @@ function validate_user_input($firstname,$lastname,$username,$password) {
    //for usage please refer to the register.php file
 }
 
+function validate_image($file) {
+    if (!empty($file)){
+        $full_path = base_app . $file;
+        // Check if the file exists
+        if (is_file($full_path)) {
+            return base_url . $file; // Return the full URL to the image
+        } else {
+            return base_url . 'dist/img/no-image-available.png'; // Return a default image if not found
+        }
+    } else {
+        return base_url . 'dist/img/no-image-available.png'; // Return a default image if no file is provided
+    }
+}
+
 ?>
