@@ -35,4 +35,22 @@ function redirect($url=''){
     }  
 }
 
+function configureErrorLogging($displayErrors = true, $customLogPath = null) {
+     // Always report all errors
+    error_reporting(E_ALL);
+
+    // Set display behavior (for dev vs prod)
+    ini_set('display_errors', $displayErrors ? '1' : '0');
+    ini_set('log_errors', '1');
+
+    //Determine log file path
+    $logPath = $customLogPath ?: __DIR__ .DIRECTORY_SEPARATOR. 'logs\error.log';
+    // echo "Log path set to: $logPath\n"; // Debugging output
+    // Set log file location
+    ini_set('error_log', $logPath);
+
+    // Optional: flush output for visibility
+    ob_implicit_flush(true);
+}
+
 ?>
