@@ -53,4 +53,39 @@ function configureErrorLogging($displayErrors = true, $customLogPath = null) {
     ob_implicit_flush(true);
 }
 
+function validate_user_input($firstname,$lastname,$username,$password) {
+    $alerts = [
+        'AlertFirstname' => 0,
+        'AlertLastname' => 0,
+        'AlertUsername' => 0,
+        'AlertPassword' => 0,
+    ];
+
+    if(empty($firstname)) {
+        $alerts['AlertFirstname'] = 1;
+    } 
+    if(empty($lastname)) {
+        $alerts['AlertLastname'] = 1;
+    }
+    if(empty($username)) {
+        $alerts['AlertUsername'] = 1;
+    } elseif(strlen($username) < 3 || strlen(($username)) > 20) {
+        $alerts['AlertUsername'] = 2; // Username must be between 3 and 20 characters
+    } elseif(!preg_match('/^[a-zA-Z0-9_]+$/', $username)) {
+        $alerts['AlertUsername'] = 3; // Username can only contain letters, numbers, and underscores
+    } elseif(preg_match('/\s/', $username)) {
+        $alerts['AlertUsername'] = 4; // Username cannot contain spaces
+    }
+    if(empty($password)) {
+        $alerts['AlertPassword'] = 1;
+    } elseif(strlen($password) < 6 || strlen(($password)) > 20) {
+        $alerts['AlertPassword'] = 2; // Password must be between 6 and 20 characters
+    }
+
+    // echo var_dump($alerts);
+    return $alerts;
+
+   //for usage please refer to the register.php file
+}
+
 ?>
