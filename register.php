@@ -1,6 +1,12 @@
 <?php
 require_once '../config.php';
 
+if(file_exists('../validation/user_input.php')) {
+  require '../validation/user_input.php';
+} else {
+  die('Validation file not found.');
+}
+
 $success = 0;
 $userExist = 0;
 $msg = '';
