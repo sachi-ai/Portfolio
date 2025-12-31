@@ -126,4 +126,13 @@ function upload_file($field_name, $upload_dir = 'uploads/') {
      }
 }
 
+function debug_post(){
+    if($_SERVER['REQUEST_METHOD'] == 'POST') {
+        echo "<strong>--POST Data--</strong>\n";
+        echo "<pre>";
+        print_r($_POST);
+        echo "</pre>";
+    }
+}
+
 ?>
