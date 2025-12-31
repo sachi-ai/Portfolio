@@ -1,4 +1,4 @@
-<?php 
+    <?php 
 date_default_timezone_set('Asia/Manila'); // Set default timezone
 session_start(); // Start session management
 
@@ -27,6 +27,12 @@ function isMobileDevice() {
         }
     }
     return false; // Return false if no mobile device is detected
+}
+
+function redirect($url=''){
+    if(!empty($url)){
+        echo '<script> location.href="'.base_url. $url.'"</script>';
+    }  
 }
 
 ?>
