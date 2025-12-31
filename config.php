@@ -135,4 +135,13 @@ function debug_post(){
     }
 }
 
+function debug_uploaded_file($file) {
+    if(isset($_FILES[$file]) && $_FILES[$file]['error'] == 0) {
+        echo "<strong>Uploaded file name: </strong>" . htmlspecialchars($_FILES[$file]['name']) . "<br>";
+        echo "<strong>File type: </strong>" . htmlspecialchars($_FILES[$file]['type']) . "<br>";
+        echo "<strong>Temp file path: </strong>" . htmlspecialchars($_FILES[$file]['tmp_name']) . "<br>";
+        echo "<strong>File size (bytes): </strong>" . $_FILES[$file]['size'] . "<br>";  
+    }
+}
+
 ?>
