@@ -2,6 +2,9 @@
 date_default_timezone_set('Asia/Manila'); // Set default timezone
 session_start(); // Start session management
 
+require_once 'init.php'; // Include initialization file
+require_once 'classes/DBConnection.php'; // Include database connection class
+require_once 'classes/SystemSettings.php'; // Include system settings class
 
 $db = new DBConnection(); // Create a new database connection instance
 $conn = $db->conn; // Get the connection object
