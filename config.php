@@ -6,6 +6,10 @@ session_start(); // Start session management
 $db = new DBConnection(); // Create a new database connection instance
 $conn = $db->conn; // Get the connection object
 
+function sanitize_input($data) {
+    return htmlspecialchars(trim($data)); // Sanitize input data
+}
+
 // Check if the request is from a mobile device
 function isMobileDevice() {
     $aMobileUA = array(
