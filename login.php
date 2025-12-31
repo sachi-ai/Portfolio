@@ -69,6 +69,9 @@
     </div>
   </div>
 
+  <!-- /.login-box -->
+  <?php require_once 'includes/footer.php' ?>
+
   <script>
   $(document).ready(function(){
     end_loader();
